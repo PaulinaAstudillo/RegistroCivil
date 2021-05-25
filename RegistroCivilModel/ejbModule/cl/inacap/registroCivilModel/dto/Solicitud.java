@@ -1,11 +1,13 @@
 package cl.inacap.registroCivilModel.dto;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Solicitud {
 	
 	private String rutCliente;
 	private String nombreCliente;
 	private String tipoSolicitud;
-	private volatile int nroSolicitud;
+	private AtomicInteger nroSolicitud;
 	
 	
 	public String getRutCliente() {
@@ -26,10 +28,10 @@ public class Solicitud {
 	public void setTipoSolicitud(String tipoSolicitud) {
 		this.tipoSolicitud = tipoSolicitud;
 	}
-	public int getNroSolicitud() {
+	public AtomicInteger getNroSolicitud() {
 		return nroSolicitud;
 	}
-	public void setNroSolicitud(int nroSolicitud) {
+	public void setNroSolicitud(AtomicInteger nroSolicitud) {
 		this.nroSolicitud = nroSolicitud;
 	}
 }

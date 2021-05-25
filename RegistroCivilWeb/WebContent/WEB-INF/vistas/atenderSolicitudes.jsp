@@ -45,7 +45,7 @@
 								<tbody>
 									<c:forEach var="solicitud" items="${solicitudes}">
 										<tr>
-											<td></td>
+											<td>${solicitud.nroSolicitud}</td>
 											<td>${solicitud.nombreCliente}</td>
 											<td>${solicitud.tipoSolicitud}</td>
 											<td><a href="AtenderSolicitudController.do?eliminarSolicitud=${solicitud.nombreCliente}">Atender</a></td>

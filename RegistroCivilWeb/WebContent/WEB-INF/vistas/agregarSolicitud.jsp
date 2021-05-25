@@ -21,7 +21,7 @@
 	</div>
 	</c:if>
 	
-	<div class="columns has-text-centered">
+	<div class="columns is-centered">
 		<div class="column is-6">
 			<form method="POST" action="AgregarSolicitudController.do">
 				<div class="card">
@@ -52,18 +52,17 @@
 										<option>Solicitud de Certificado de Nacimiento</option>
 										<option>Solicitud de Certificado de Defunción</option>
 									</select>
-								<!--acuerdate del if para el nro de atención
-								
-								<div class="field" for="nroAtencion-txt">
+						<!--  		<div class="field" for="nroAtencion-txt">
 							<label>Escriba su número de solicitud original</label>
 						</div>
 						<div class="control">
 							<input type="text" class="input" id="nroAtencion-txt" name="nroAtencion-txt"/>
 						</div>
-								-->	
+								-->
 								</div>
 							</div>
 						</div>
+						
 						<div class="field">
 						
 						</div>

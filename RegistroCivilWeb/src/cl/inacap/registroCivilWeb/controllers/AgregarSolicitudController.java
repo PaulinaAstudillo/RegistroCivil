@@ -3,6 +3,7 @@ package cl.inacap.registroCivilWeb.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -48,23 +49,13 @@ public class AgregarSolicitudController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<String> errores = new ArrayList<>();
+
 		String rutCliente = request.getParameter("rutCliente-txt").trim();
 		String nombreCliente = request.getParameter("nombreCliente-txt").trim();
 		String tipoSolicitud = request.getParameter("tipoSolicitud-select").trim();
 		if (rutCliente.isEmpty()) {
 			errores.add("Ingrese su rut");
-		} else {
-			/*
-			 * try { rutCliente = rutCliente.replace(".", ""); rutCliente =
-			 * rutCliente.replace("-", ""); int rutAux =
-			 * Integer.parseInt(rutCliente.substring(0, rutCliente.length() - 1)); char dv =
-			 * rutCliente.charAt(rutCliente.length() - 1); int m = 0, s = 1; for (; rutAux
-			 * != 0; rutAux /= 10) { s = (s + rutAux % 10 * (9 - m++ % 6)) % 11; } if (dv ==
-			 * (char) (s != 0 ? s + 47 : 75)) { } else { rutCliente = ""; } } catch
-			 * (NumberFormatException ex) { System.out.println("chao"); } catch (Exception
-			 * ex) { System.out.println("chao"); }
-			 */
-		}
+		} 
 
 		if (nombreCliente.isEmpty()) {
 			errores.add("Ingrese su nombre");
@@ -77,9 +68,14 @@ public class AgregarSolicitudController extends HttpServlet {
 			solicitud.setRutCliente(rutCliente);
 			solicitud.setNombreCliente(nombreCliente);
 			solicitud.setTipoSolicitud(tipoSolicitud);
+
+			AtomicInteger nroSolicitud = new AtomicInteger(0);
+			nroSolicitud.incrementAndGet();
+			solicitud.setNroSolicitud(nroSolicitud);
+
 			solicitudesDAO.save(solicitud);
 			request.getRequestDispatcher("WEB-INF/vistas/atenderSolicitudes.jsp").forward(request, response);
-			
+
 		} else {
 			request.setAttribute("errores", errores);
 		}
